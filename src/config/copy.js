@@ -1,0 +1,28 @@
+export const copy = {
+  ru: {
+    title: 'SWITCH — сайты, которые переключают внимание',
+    description: 'SWITCH — дизайн и разработка сайтов. Проекты, услуги и связь со студией.',
+    home: 'Главная', works: 'Наши работы', services: 'Услуги', contact: 'Контакты',
+    skip: 'Перейти к работам', backTop: 'Наверх', footerNav: 'Навигация в подвале',
+    hero: { first: 'Сайты, которые', second: 'переключают внимание.', cta: 'Смотреть работы', scroll: 'К работам' },
+    menu: { open: 'Открыть меню', close: 'Закрыть меню', nav: 'Основная навигация', home: 'SWITCH — на главную', socials: 'Соцсети', language: 'Язык сайта' },
+    carousel: { loading: 'Загрузка…', label: 'Проекты. Зажмите левую кнопку мыши и перетаскивайте. Клавиши влево и вправо — листать, Enter — открыть.', of: 'из' },
+    folder: { label: 'Услуги', aria: 'Папка услуг. Открыть или закрыть', open: 'Открыть папку', collapse: 'Свернуть папку', close: 'Выберите лист', return: 'Потяните уголок вниз или нажмите, чтобы свернуть лист', group: 'Тип проекта', discuss: 'Обсудить проект' },
+    contactTitle: 'Связаться с нами',
+    form: { label: 'Заявка на сайт', name: 'Имя', namePlaceholder: 'Ваше имя', contact: 'Телефон или Telegram', contactPlaceholder: '+7 или @username', project: 'Тип проекта', comment: 'Комментарий', commentPlaceholder: 'Коротко о вашей задаче', website: 'Ваш сайт', send: 'Отправить заявку', sending: 'Отправляем…', again: 'Отправить ещё', note: 'Контакт нужен только для ответа.', success: 'Заявка отправлена. Скоро свяжемся с вами.', errors: { name: 'Введите имя — минимум 2 символа', contact: 'Введите телефон или Telegram: @username', network: 'Нет связи с сервером. Попробуйте ещё раз.', unavailable: 'Приём заявок пока недоступен.', rate: 'Слишком много попыток. Повторите через 15 минут.', invalid: 'Проверьте данные и попробуйте ещё раз.', delivery: 'Не удалось отправить. Попробуйте ещё раз.' } },
+    modal: { close: 'Закрыть проект', video: 'Видео проекта', unavailable: 'Видео недоступно', soon: 'Видео скоро', cover: 'Обложка проекта' },
+  },
+  en: {
+    title: 'SWITCH — websites that turn heads',
+    description: 'SWITCH — website design and development. Selected work, services and contact.',
+    home: 'Home', works: 'Selected work', services: 'Services', contact: 'Contact',
+    skip: 'Skip to work', backTop: 'Back to top', footerNav: 'Footer navigation',
+    hero: { first: 'Websites that', second: 'turn heads.', cta: 'Explore work', scroll: 'View work' },
+    menu: { open: 'Open menu', close: 'Close menu', nav: 'Main navigation', home: 'SWITCH — home', socials: 'Socials', language: 'Website language' },
+    carousel: { loading: 'Loading…', label: 'Projects. Hold the left mouse button and drag. Arrow keys navigate; Enter opens a project.', of: 'of' },
+    folder: { label: 'Services', aria: 'Services folder. Open or close', open: 'Open folder', collapse: 'Close folder', close: 'Choose a sheet', return: 'Pull the corner down or click to fold the sheet', group: 'Project type', discuss: 'Discuss your project' },
+    contactTitle: 'Get in touch',
+    form: { label: 'Website inquiry', name: 'Name', namePlaceholder: 'Your name', contact: 'Phone or Telegram', contactPlaceholder: 'Phone or @username', project: 'Project type', comment: 'Message', commentPlaceholder: 'A few words about your project', website: 'Your website', send: 'Send inquiry', sending: 'Sending…', again: 'Send another', note: 'We only use your contact to reply.', success: 'Inquiry sent. We’ll be in touch soon.', errors: { name: 'Enter your name — at least 2 characters', contact: 'Enter a phone number or Telegram: @username', network: 'Could not connect. Please try again.', unavailable: 'Inquiries are temporarily unavailable.', rate: 'Too many attempts. Try again in 15 minutes.', invalid: 'Check your details and try again.', delivery: 'Could not send. Please try again.' } },
+    modal: { close: 'Close project', video: 'Project video', unavailable: 'Video unavailable', soon: 'Video coming soon', cover: 'Project cover' },
+  },
+};
