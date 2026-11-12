@@ -61,7 +61,37 @@
 .language-switch button:hover { color: #5fd4ff; }
 .work-modal .modal-close { position: absolute; top: 14px; right: 14px; z-index: 2; background: #050608c9; backdrop-filter: blur(6px); }
 .modal-description { display: block; padding: 20px 28px 26px; }
+.modal-title-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .modal-description h2 { font-weight: 800; font-size: 28px; margin: 0; }
+.modal-site-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 650;
+  color: #78caff;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(120, 202, 255, 0.08);
+  border: 1px solid rgba(120, 202, 255, 0.28);
+  transition: background .2s, border-color .2s, color .2s, transform .2s;
+  line-height: 1;
+}
+.modal-site-link:hover {
+  background: rgba(120, 202, 255, 0.2);
+  border-color: #78caff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+.modal-site-link svg {
+  width: 12px;
+  height: 12px;
+  transition: transform .2s ease;
+}
+.modal-site-link:hover svg {
+  transform: translate(1px, -1px);
+}
 .modal-description > p { font-size: 13px; }
 @media(max-width:1000px) {
   .folder-showcase { min-height: 365px; }
@@ -94,4 +124,6 @@
   .field input, .field textarea, .field select { font-size: 12px; }
   .switch-menu .staggered-menu-panel { padding-top: 130px; padding-bottom: 30px; }
   .language-switch { padding-top: 18px; margin-top: 18px; }
+  .modal-title-row { gap: 10px; }
+  .modal-site-link { font-size: 11px; padding: 5px 12px; }
 }

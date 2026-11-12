@@ -10,7 +10,7 @@ export const copy = {
     folder: { label: 'Услуги', aria: 'Папка услуг. Открыть или закрыть', open: 'Открыть папку', collapse: 'Свернуть папку', close: 'Выберите лист', return: 'Потяните уголок вниз или нажмите, чтобы свернуть лист', group: 'Тип проекта', discuss: 'Обсудить проект' },
     contactTitle: 'Связаться с нами',
     form: { label: 'Заявка на сайт', name: 'Имя', namePlaceholder: 'Ваше имя', contact: 'Телефон или Telegram', contactPlaceholder: '+7 или @username', project: 'Тип проекта', comment: 'Комментарий', commentPlaceholder: 'Коротко о вашей задаче', website: 'Ваш сайт', send: 'Отправить заявку', sending: 'Отправляем…', again: 'Отправить ещё', note: 'Контакт нужен только для ответа.', success: 'Заявка отправлена. Скоро свяжемся с вами.', errors: { name: 'Введите имя — минимум 2 символа', contact: 'Введите телефон или Telegram: @username', network: 'Нет связи с сервером. Попробуйте ещё раз.', unavailable: 'Приём заявок пока недоступен.', rate: 'Слишком много попыток. Повторите через 15 минут.', invalid: 'Проверьте данные и попробуйте ещё раз.', delivery: 'Не удалось отправить. Попробуйте ещё раз.' } },
-    modal: { close: 'Закрыть проект', video: 'Видео проекта', unavailable: 'Видео недоступно', soon: 'Видео скоро', cover: 'Обложка проекта' },
+    modal: { close: 'Закрыть проект', video: 'Видео проекта', unavailable: 'Видео недоступно', soon: 'Видео скоро', cover: 'Обложка проекта', link: 'Перейти на сайт' },
   },
   en: {
     title: 'SWITCH — websites that turn heads',
@@ -23,6 +23,6 @@ export const copy = {
     folder: { label: 'Services', aria: 'Services folder. Open or close', open: 'Open folder', collapse: 'Close folder', close: 'Choose a sheet', return: 'Pull the corner down or click to fold the sheet', group: 'Project type', discuss: 'Discuss your project' },
     contactTitle: 'Get in touch',
     form: { label: 'Website inquiry', name: 'Name', namePlaceholder: 'Your name', contact: 'Phone or Telegram', contactPlaceholder: 'Phone or @username', project: 'Project type', comment: 'Message', commentPlaceholder: 'A few words about your project', website: 'Your website', send: 'Send inquiry', sending: 'Sending…', again: 'Send another', note: 'We only use your contact to reply.', success: 'Inquiry sent. We’ll be in touch soon.', errors: { name: 'Enter your name — at least 2 characters', contact: 'Enter a phone number or Telegram: @username', network: 'Could not connect. Please try again.', unavailable: 'Inquiries are temporarily unavailable.', rate: 'Too many attempts. Try again in 15 minutes.', invalid: 'Check your details and try again.', delivery: 'Could not send. Please try again.' } },
-    modal: { close: 'Close project', video: 'Project video', unavailable: 'Video unavailable', soon: 'Video coming soon', cover: 'Project cover' },
+    modal: { close: 'Close project', video: 'Project video', unavailable: 'Video unavailable', soon: 'Video coming soon', cover: 'Project cover', link: 'Visit website' },
   },
 };

@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useLanguage } from './Language.jsx';
 import { localizeWork } from '../config/works.js';
+import { Arrow } from './Icons.jsx';
 
 export default function WorkModal({ selection, onClose }) {
   const { language, t } = useLanguage();
@@ -50,7 +51,22 @@ export default function WorkModal({ selection, onClose }) {
     <div ref={panel} className="work-modal" role="dialog" aria-modal="true" aria-labelledby="project-title">
       <button ref={closeButton} onClick={close} className="modal-close" aria-label={t.modal.close}>✕</button>
       {work.video && !failed ? <video ref={video} src={work.video} poster={work.cover} autoPlay muted controls playsInline preload="none" onError={() => setFailed(true)} aria-label={`${t.modal.video}: ${work.title}`} /> : <div className="project-poster"><img src={work.cover} alt={`${t.modal.cover}: ${work.title}`} /><span>{failed ? t.modal.unavailable : t.modal.soon}</span></div>}
-      <div className="modal-description"><h2 id="project-title">{work.title}</h2></div>
+      <div className="modal-description">
+        <div className="modal-title-row">
+          <h2 id="project-title">{work.title}</h2>
+          {work.link && (
+            <a
+              href={work.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-site-link"
+            >
+              <span>{t.modal.link}</span>
+              <Arrow />
+            </a>
+          )}
+        </div>
+      </div>
     </div>
   </div>, document.body);
 }
