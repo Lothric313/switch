@@ -9,3 +9,4 @@ artifacts/
 outputs/
 /Inter-4.1.zip
 deploy.bat
+deploy.ps1
