@@ -47,33 +47,37 @@ export default function Contact({ selected, onSelect }) {
     <div className="contact-grid">
       <div className="contact-intro">
         <Reveal as="h2">{t.contactTitle}<span className="blue">↗</span></Reveal>
-        <div className="social-links">{socials.map(social => <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
-          <SocialIcon id={social.id} /><span>{social.label}</span><Arrow />
-        </a>)}</div>
+        <Reveal delay={120}>
+          <div className="social-links">{socials.map(social => <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
+            <SocialIcon id={social.id} /><span>{social.label}</span><Arrow />
+          </a>)}</div>
+        </Reveal>
       </div>
-      <form ref={form} className="contact-form" onSubmit={submit} noValidate aria-label={f.label}>
-        <div className="form-two">
-          <div className="field">
-            <label htmlFor="name">{f.name} <span>*</span></label>
-            <input id="name" name="name" placeholder={f.namePlaceholder} autoComplete="name" required minLength={2} maxLength={80} aria-invalid={!!errors.name} aria-describedby={errors.name ? 'name-error' : undefined} />
-            {errors.name && <span id="name-error" className="field-error">{f.errors.name}</span>}
+      <Reveal delay={100} className="contact-form-wrap">
+        <form ref={form} className="contact-form" onSubmit={submit} noValidate aria-label={f.label}>
+          <div className="form-two">
+            <div className="field">
+              <label htmlFor="name">{f.name} <span>*</span></label>
+              <input id="name" name="name" placeholder={f.namePlaceholder} autoComplete="name" required minLength={2} maxLength={80} aria-invalid={!!errors.name} aria-describedby={errors.name ? 'name-error' : undefined} />
+              {errors.name && <span id="name-error" className="field-error">{f.errors.name}</span>}
+            </div>
+            <div className="field">
+              <label htmlFor="contact-input">{f.contact} <span>*</span></label>
+              <input id="contact-input" name="contact" placeholder={f.contactPlaceholder} autoComplete="tel" required maxLength={100} aria-invalid={!!errors.contact} aria-describedby={errors.contact ? 'contact-error' : undefined} />
+              {errors.contact && <span id="contact-error" className="field-error">{f.errors.contact}</span>}
+            </div>
           </div>
           <div className="field">
-            <label htmlFor="contact-input">{f.contact} <span>*</span></label>
-            <input id="contact-input" name="contact" placeholder={f.contactPlaceholder} autoComplete="tel" required maxLength={100} aria-invalid={!!errors.contact} aria-describedby={errors.contact ? 'contact-error' : undefined} />
-            {errors.contact && <span id="contact-error" className="field-error">{f.errors.contact}</span>}
+            <label htmlFor="project-type">{f.project}</label>
+            <div className="select-wrap"><select id="project-type" name="service" value={selected} onChange={event => onSelect(event.target.value)}>{services.map(service => <option key={service.id} value={service.id}>{serviceLabel(service)}</option>)}</select><span aria-hidden="true">⌄</span></div>
           </div>
-        </div>
-        <div className="field">
-          <label htmlFor="project-type">{f.project}</label>
-          <div className="select-wrap"><select id="project-type" name="service" value={selected} onChange={event => onSelect(event.target.value)}>{services.map(service => <option key={service.id} value={service.id}>{serviceLabel(service)}</option>)}</select><span aria-hidden="true">⌄</span></div>
-        </div>
-        <div className="field"><label htmlFor="comment">{f.comment}</label><textarea id="comment" name="comment" placeholder={f.commentPlaceholder} rows={3} maxLength={3000} /></div>
-        <div className="honeypot" aria-hidden="true"><label htmlFor="website">{f.website}</label><input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
-        <button className="submit-button" type="submit" disabled={status === 'loading'}>{status === 'loading' ? f.sending : status === 'success' ? f.again : f.send}{status === 'loading' ? <span className="spinner" /> : <Arrow />}</button>
-        <p className="form-message" role={status === 'error' ? 'alert' : 'status'} data-status={status}>{status === 'success' ? f.success : status === 'error' ? f.errors[problem] : ''}</p>
-        <p className="form-note">{staticHosting ? f.errors.unavailable : f.note}</p>
-      </form>
+          <div className="field"><label htmlFor="comment">{f.comment}</label><textarea id="comment" name="comment" placeholder={f.commentPlaceholder} rows={3} maxLength={3000} /></div>
+          <div className="honeypot" aria-hidden="true"><label htmlFor="website">{f.website}</label><input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
+          <button className="submit-button" type="submit" disabled={status === 'loading'}>{status === 'loading' ? f.sending : status === 'success' ? f.again : f.send}{status === 'loading' ? <span className="spinner" /> : <Arrow />}</button>
+          <p className="form-message" role={status === 'error' ? 'alert' : 'status'} data-status={status}>{status === 'success' ? f.success : status === 'error' ? f.errors[problem] : ''}</p>
+          <p className="form-note">{staticHosting ? f.errors.unavailable : f.note}</p>
+        </form>
+      </Reveal>
     </div>
   </section>;
 }

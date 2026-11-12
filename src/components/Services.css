@@ -23,11 +23,17 @@
 .service-folder-paper strong { min-width: 0; font-size: 14px; line-height: 1.4; font-weight: 650; overflow-wrap: anywhere; hyphens: auto; }
 .service-paper-index { flex: none; color: #2878df; font-size: 12px; line-height: 1.65; font-weight: 650; font-variant-numeric: tabular-nums; }
 .service-folder.is-open .service-folder-paper { top: calc(var(--paper-index) * 22%); height: 34%; transform: translateX(var(--paper-shift)) rotate(var(--paper-turn)); }
-.service-folder.is-open .service-folder-paper:hover { background: #f5f8fc; }
+.service-folder.is-open .service-folder-paper:hover {
+  background: #fcfdff;
+  transform: translateX(calc(var(--paper-shift) + 6px)) translateY(-2px) rotate(var(--paper-turn));
+  box-shadow: 0 8px 24px rgba(8, 23, 44, 0.28);
+}
 .service-folder-paper.is-lifted { opacity: 0; pointer-events: none; }
 .service-paper-fold { position: absolute; right: -1px; top: -1px; width: 15px; height: 15px; clip-path: polygon(0 0, 0 100%, 100% 100%); background: #ccd9e9; }
 .service-title { position: relative; display: inline-block; transition: color 200ms; }
 .service-title::after { content: ''; position: absolute; left: 0; right: 0; bottom: -5px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 260ms ease-out; }
+.service-row:hover .service-title { color: #8ec3ff; }
+.service-row:hover .service-title::after { transform: scaleX(1); }
 .service-row.selected .service-title { color: var(--blue); }
 .service-row.selected .service-title::after { transform: scaleX(1); }
 

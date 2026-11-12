@@ -334,12 +334,24 @@
 @media (max-width: 1024px) {
   .staggered-menu-panel {
     width: 100%;
-    left: 0;
+    left: auto;
     right: 0;
+  }
+
+  [data-position='left'] .staggered-menu-panel {
+    left: 0;
+    right: auto;
   }
 
   .sm-prelayers {
     width: 100%;
+    left: auto;
+    right: 0;
+  }
+
+  [data-position='left'] .sm-prelayers {
+    left: 0;
+    right: auto;
   }
 
   .staggered-menu-wrapper[data-open] .sm-logo-img {
@@ -350,8 +362,13 @@
 @media (max-width: 640px) {
   .staggered-menu-panel {
     width: 100%;
-    left: 0;
+    left: auto;
     right: 0;
+  }
+
+  [data-position='left'] .staggered-menu-panel {
+    left: 0;
+    right: auto;
   }
 
   .staggered-menu-wrapper[data-open] .sm-logo-img {

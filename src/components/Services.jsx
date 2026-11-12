@@ -42,12 +42,12 @@ export default function Services({ selected, onSelect }) {
           requestAnimationFrame(() => sheet.trigger?.focus({ preventScroll: true }));
         }} />}
       </div>
-      <div className="service-list" role="group" aria-label={t.folder.group}>
+      <Reveal as="div" delay={90} className="service-list" role="group" aria-label={t.folder.group}>
         {services.map(item => <button key={item.id} className={`service-row ${selected === item.id ? 'selected' : ''}`} aria-pressed={selected === item.id} aria-expanded={sheet?.id === item.id} aria-controls="service-sheet" onClick={event => choose(item, event)}>
           <span className="service-name"><span className="service-title">{item.title}</span><small>{item.priceLabel}</small></span>
         </button>)}
         <a className="text-link" href="#contact">{t.folder.discuss} <Arrow /></a>
-      </div>
+      </Reveal>
     </div>
   </section>;
 }
