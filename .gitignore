@@ -8,3 +8,4 @@ dist/
 artifacts/
 outputs/
 /Inter-4.1.zip
+deploy.bat
