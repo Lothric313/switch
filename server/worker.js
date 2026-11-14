@@ -18,8 +18,10 @@ export default {
       for (const [key, value] of attempts) if (value.expires < now) attempts.delete(key);
       const record = attempts.get(ip) || { count: 0, expires: now + 15 * 60 * 1000 };
       record.count++;
+      if (!attempts.has(ip) && attempts.size >= 10000) attempts.delete(attempts.keys().next().value);
       attempts.set(ip, record);
       if (record.count > 5) return json({ message: 'Слишком много заявок. Попробуйте через 15 минут.' }, 429);
+      if (!/^application\/json(?:\s*;|\s*$)/i.test(request.headers.get('Content-Type') || '')) return json({ message: 'Используйте JSON.' }, 415);
       if (Number(request.headers.get('Content-Length')) > 12288) return json({ message: 'Заявка слишком большая.' }, 413);
       let body;
       try {
@@ -56,7 +58,7 @@ export default {
     const headers = {
       'Content-Type': asset.type, 'Cache-Control': url.pathname.startsWith('/assets/') ? 'public, max-age=31536000, immutable' : 'public, max-age=300',
       'Accept-Ranges': 'bytes', 'Content-Length': String(bytes.length),
-      'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'X-Frame-Options': 'DENY',
+      'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'X-Frame-Options': 'DENY', 'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
     };
     const range = request.headers.get('Range');
     if (range && request.method === 'GET') {

@@ -17,4 +17,6 @@ if (isDev) {
 }
 const port = Number(process.env.PORT || 5173);
 const server = app.listen(port, process.env.HOST || (isDev ? '127.0.0.1' : '0.0.0.0'), () => console.log(`SWITCH is ready: http://localhost:${port}`));
+server.headersTimeout = 15000;
+server.requestTimeout = 30000;
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, async () => { await vite?.close(); server.close(() => process.exit(0)); });

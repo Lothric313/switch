@@ -9,9 +9,10 @@ export function createApp({ env = process.env, deliver } = {}) {
   // Set TRUST_PROXY=1 only behind exactly one trusted reverse proxy.
   if (env.TRUST_PROXY === '1') app.set('trust proxy', 1);
   app.use((req, res, next) => {
-    res.set({ 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'X-Frame-Options': 'DENY' });
+    res.set({ 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'X-Frame-Options': 'DENY', 'Permissions-Policy': 'camera=(), microphone=(), geolocation=()' });
     next();
   });
+  app.use('/api/contact', rateLimit({ windowMs: 15 * 60 * 1000, limit: 5, standardHeaders: 'draft-8', legacyHeaders: false, message: { message: 'Слишком много заявок. Попробуйте через 15 минут.' } }));
   app.use('/api', express.json({ limit: '12kb' }));
   app.get('/api/health', (req, res) => res.json({ ok: true }));
   let transport;
@@ -21,7 +22,8 @@ export function createApp({ env = process.env, deliver } = {}) {
     transport ||= nodemailer.createTransport({ host: env.SMTP_HOST, port: Number(env.SMTP_PORT || 587), secure: env.SMTP_SECURE === 'true', auth: { user: env.SMTP_USER, pass: env.SMTP_PASS }, connectionTimeout: 10000, socketTimeout: 12000 });
     await transport.sendMail({ from: env.MAIL_FROM, to: env.CONTACT_TO || 'bannerdrop1@gmail.com', ...emailContent(data) });
   });
-  app.post('/api/contact', rateLimit({ windowMs: 15 * 60 * 1000, limit: 5, standardHeaders: 'draft-8', legacyHeaders: false, message: { message: 'Слишком много заявок. Попробуйте через 15 минут.' } }), async (req, res) => {
+  app.post('/api/contact', async (req, res) => {
+    if (!req.is('application/json')) return res.status(415).json({ message: 'Используйте JSON.' });
     const origin = req.get('origin');
     const expected = env.APP_ORIGIN || `${req.protocol}://${req.get('host')}`;
     if (origin && origin !== expected) return res.status(403).json({ message: 'Отправка с этого адреса недоступна.' });

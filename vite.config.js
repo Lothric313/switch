@@ -4,7 +4,15 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   base: process.env.VITE_BASE_PATH || '/',
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(), {
+    name: 'production-csp',
+    apply: 'build',
+    transformIndexHtml: () => [{
+      tag: 'meta',
+      attrs: { 'http-equiv': 'Content-Security-Policy', content: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" },
+      injectTo: 'head-prepend',
+    }],
+  }],
   resolve: { alias: { '@': new URL('./src', import.meta.url).pathname } },
   build: { target: 'es2022', outDir: 'dist/client' },
 });

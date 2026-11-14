@@ -38,10 +38,9 @@ test('endpoint delivers valid requests, rejects cross-origin and malformed JSON,
   assert.equal((await post({ ...valid(), website: 'bot' })).status, 200);
   assert.equal(received.length, 1);
   assert.equal((await post({ ...valid(), name: '' })).status, 400);
-  assert.equal((await post(valid())).status, 200);
-  assert.equal((await post(valid())).status, 429);
   const malformed = await fetch(`${base}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{' });
   assert.equal(malformed.status, 400);
+  assert.equal((await post(valid())).status, 429);
 });
 test('missing provider returns a real error rather than a fake successful submission', async t => {
   const server = createApp({ env: {} }).listen(0, '127.0.0.1');
@@ -49,6 +48,9 @@ test('missing provider returns a real error rather than a fake successful submis
   t.after(() => server.close());
   const response = await fetch(`http://127.0.0.1:${server.address().port}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(valid()) });
   assert.equal(response.status, 503);
+  const wrongType = await fetch(`http://127.0.0.1:${server.address().port}/api/contact`, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: '{}' });
+  assert.equal(wrongType.status, 415);
+  assert.match(response.headers.get('permissions-policy'), /camera=\(\)/);
 });
 test('serverless endpoint shares validation and serves the bundled client', async () => {
   const { readFile } = await import('node:fs/promises');
@@ -68,6 +70,7 @@ test('serverless endpoint shares validation and serves the bundled client', asyn
   const invalid = await worker.fetch(new Request('https://switch.test/works/test.mp4', { headers: { Range: 'bytes=20-' } }), {});
   assert.equal(invalid.status, 416);
   const post = input => worker.fetch(new Request('https://switch.test/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input) }), {});
+  assert.equal((await worker.fetch(new Request('https://switch.test/api/contact', { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: '{}' }), {})).status, 415);
   assert.equal((await post(valid())).status, 503);
   assert.equal((await post({ ...valid(), name: '' })).status, 400);
 });
