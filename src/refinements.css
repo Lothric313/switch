@@ -278,3 +278,12 @@
 @media (max-width: 700px) {
   .field input, .field textarea, .field select { font-size: 16px; }
 }
+
+/* Keep menu animation light and align item numbers in a fixed column. */
+.menu-shade, .switch-menu .staggered-menu-panel { backdrop-filter: none; -webkit-backdrop-filter: none; }
+.switch-menu .sm-panel-item { display: grid; grid-template-columns: minmax(0, 1fr) 28px; align-items: baseline; width: 100%; padding-right: 0; }
+.switch-menu .sm-panel-itemLabel { white-space: nowrap; }
+.switch-menu .sm-panel-item::after { position: static; justify-self: end; font-variant-numeric: tabular-nums; }
+@media (max-width: 700px) {
+  .switch-menu .sm-panel-item { font-size: clamp(24px, 8vw, 42px); }
+}

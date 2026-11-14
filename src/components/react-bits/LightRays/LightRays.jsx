@@ -317,6 +317,7 @@ const LightRays = ({
     let raf = 0;
     let last = 0;
     let visible = true;
+    let menuPaused = !!document.querySelector('.switch-menu[data-open]');
     let pageVisible = document.visibilityState !== 'hidden';
     let lost = false;
 
@@ -436,11 +437,11 @@ const LightRays = ({
         Math.abs((shading ? 1 : 0) - shade.presence) > 1e-3 ||
         pulses.length > 0;
       const busy = s.speed > 0 || opening < 1 || settling;
-      if (busy && visible && pageVisible) raf = requestAnimationFrame(frame);
+      if (busy && visible && pageVisible && !menuPaused) raf = requestAnimationFrame(frame);
     };
 
     const wake = () => {
-      if (raf || lost || !visible || !pageVisible) return;
+      if (raf || lost || !visible || !pageVisible || menuPaused) return;
       last = performance.now();
       raf = requestAnimationFrame(frame);
     };
@@ -522,6 +523,12 @@ const LightRays = ({
       wake();
     };
     document.addEventListener('visibilitychange', onVisibility);
+    const onMenuChange = event => {
+      menuPaused = event.detail;
+      if (menuPaused) { cancelAnimationFrame(raf); raf = 0; }
+      else wake();
+    };
+    window.addEventListener('switch-menu-change', onMenuChange);
 
     resize();
     wake();
@@ -537,6 +544,7 @@ const LightRays = ({
       window.removeEventListener('pointercancel', onPointerUp);
       document.documentElement.removeEventListener('pointerleave', onLeave);
       document.removeEventListener('visibilitychange', onVisibility);
+      window.removeEventListener('switch-menu-change', onMenuChange);
       canvas.removeEventListener('webglcontextlost', onLost);
       canvas.removeEventListener('webglcontextrestored', onRestored);
       if (!gl.isContextLost()) {

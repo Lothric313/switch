@@ -438,6 +438,7 @@ const FlexCarousel = ({
     let raf = 0;
     let last = performance.now();
     let visible = true;
+    let menuPaused = !!document.querySelector('.switch-menu[data-open]');
     let alive = true;
     let dirty = true;
     let activeIndex = -1;
@@ -721,7 +722,7 @@ const FlexCarousel = ({
       const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000));
       last = now;
       if (!s || !slots.length) {
-        if (visible) raf = requestAnimationFrame(frame);
+        if (visible && !menuPaused) raf = requestAnimationFrame(frame);
         return;
       }
 
@@ -1008,11 +1009,11 @@ const FlexCarousel = ({
         else container.removeAttribute('data-hover');
       }
 
-      if (visible && (animating || waiting || dirty || pointer.down)) raf = requestAnimationFrame(frame);
+      if (visible && !menuPaused && (animating || waiting || dirty || pointer.down)) raf = requestAnimationFrame(frame);
     };
 
     const start = () => {
-      if (raf || !visible || !alive) return;
+      if (raf || !visible || !alive || menuPaused) return;
       last = performance.now();
       raf = requestAnimationFrame(frame);
     };
@@ -1225,6 +1226,12 @@ const FlexCarousel = ({
     container.addEventListener('focus', onFocus);
     container.addEventListener('blur', onBlur);
     document.addEventListener('visibilitychange', onVisibility);
+    const onMenuChange = event => {
+      menuPaused = event.detail;
+      if (menuPaused) { cancelAnimationFrame(raf); raf = 0; }
+      else start();
+    };
+    window.addEventListener('switch-menu-change', onMenuChange);
 
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(container);
@@ -1262,6 +1269,7 @@ const FlexCarousel = ({
       container.removeEventListener('focus', onFocus);
       container.removeEventListener('blur', onBlur);
       document.removeEventListener('visibilitychange', onVisibility);
+      window.removeEventListener('switch-menu-change', onMenuChange);
       slots.forEach(slot => slot.dispose());
       slots = [];
       gl.getExtension('WEBGL_lose_context')?.loseContext();

@@ -16,7 +16,7 @@ export default function Header({ onOpenChange }) {
     observer.observe(hero);
     return () => observer.disconnect();
   }, []);
-  const change = value => { setOpen(value); onOpenChange(value); };
+  const change = value => { window.dispatchEvent(new CustomEvent('switch-menu-change', { detail: value })); setOpen(value); onOpenChange(value); };
   return <>
     {open && <div className="menu-shade" aria-hidden="true" />}
     <StaggeredMenu isFixed logoUrl={`${import.meta.env.BASE_URL}logo.svg`} className="switch-menu" colors={['#143657', '#1e6fff']} menuButtonColor="#f7f8fa" openMenuButtonColor="#f7f8fa" accentColor="#5fd4ff"

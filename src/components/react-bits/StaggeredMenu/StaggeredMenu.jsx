@@ -119,7 +119,7 @@ export const StaggeredMenu = ({
     });
     const lastTime = layerStates.length ? (layerStates.length - 1) * 0.07 : 0;
     const panelInsertTime = lastTime + (layerStates.length ? 0.08 : 0);
-    const panelDuration = 0.65;
+    const panelDuration = reducedMotion ? 0 : 0.4;
     tl.fromTo(
       panel,
       { xPercent: panelStart },
@@ -135,9 +135,9 @@ export const StaggeredMenu = ({
         {
           yPercent: 0,
           rotate: 0,
-          duration: reducedMotion ? 0 : 1,
+          duration: reducedMotion ? 0 : 0.45,
           ease: 'power4.out',
-          stagger: { each: 0.1, from: 'start' }
+          stagger: { each: 0.045, from: 'start' }
         },
         itemsStart
       );
@@ -145,7 +145,7 @@ export const StaggeredMenu = ({
         tl.to(
           numberEls,
           {
-            duration: reducedMotion ? 0 : 0.6,
+            duration: reducedMotion ? 0 : 0.3,
             ease: 'power2.out',
             '--sm-num-opacity': 1,
             stagger: { each: 0.08, from: 'start' }
