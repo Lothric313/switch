@@ -3,6 +3,7 @@ import { getServices, serviceLabel } from '../config/services.js';
 import { socials } from '../config/socials.js';
 import { Arrow, SocialIcon } from './Icons.jsx';
 import { CONTACT_PATTERN } from '../config/validation.js';
+import { sendInquiry } from '../config/web3forms.js';
 import { useLanguage } from './Language.jsx';
 import Reveal from './Reveal.jsx';
 
@@ -10,11 +11,9 @@ export default function Contact({ selected, onSelect }) {
   const { language, t } = useLanguage();
   const services = getServices(language);
   const f = t.form;
-  const staticHosting = import.meta.env.VITE_STATIC_HOST === 'true';
   const [status, setStatus] = useState('idle');
   const [problem, setProblem] = useState('');
   const [errors, setErrors] = useState({});
-  const startedAt = useRef(Date.now());
   const form = useRef(null);
   const submit = async event => {
     event.preventDefault();
@@ -25,22 +24,18 @@ export default function Contact({ selected, onSelect }) {
     if (!CONTACT_PATTERN.test(data.contact.trim())) next.contact = true;
     setErrors(next);
     if (Object.keys(next).length) { form.current.elements[Object.keys(next)[0]].focus(); return; }
-    if (staticHosting) { setStatus('error'); setProblem('unavailable'); return; }
     setStatus('loading');
     setProblem('');
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, service: selected, startedAt: startedAt.current, language }),
-        signal: AbortSignal.timeout(20000),
-      });
+      const service = services.find(item => item.id === selected);
+      if (!service) { setProblem('invalid'); setStatus('error'); return; }
+      const response = await sendInquiry(data, service);
       if (!response.ok) {
         setProblem(response.status === 503 ? 'unavailable' : response.status === 429 ? 'rate' : response.status === 400 ? 'invalid' : 'delivery');
         setStatus('error'); return;
       }
       setStatus('success');
       for (const field of ['name', 'contact', 'comment', 'website']) form.current.elements[field].value = '';
-      startedAt.current = Date.now();
     } catch { setStatus('error'); setProblem('network'); }
   };
   return <section id="contact" className="contact-section section-space container">
@@ -75,7 +70,7 @@ export default function Contact({ selected, onSelect }) {
           <div className="honeypot" aria-hidden="true"><label htmlFor="website">{f.website}</label><input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
           <button className="submit-button" type="submit" disabled={status === 'loading'}>{status === 'loading' ? f.sending : status === 'success' ? f.again : f.send}{status === 'loading' ? <span className="spinner" /> : <Arrow />}</button>
           <p className="form-message" role={status === 'error' ? 'alert' : 'status'} data-status={status}>{status === 'success' ? f.success : status === 'error' ? f.errors[problem] : ''}</p>
-          <p className="form-note">{staticHosting ? f.errors.unavailable : f.note}</p>
+          <p className="form-note">{f.note}</p>
         </form>
       </Reveal>
     </div>
