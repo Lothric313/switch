@@ -37,7 +37,7 @@ export default function Services({ selected, onSelect }) {
             <span className="service-folder-cover-inside" aria-hidden="true"><svg className="service-folder-watermark" viewBox="-2 -2 104 104" preserveAspectRatio="none" focusable="false"><text x="0" y="100" fontSize="137" fontWeight="700" textLength="100" lengthAdjust="spacingAndGlyphs" transform="translate(0 100) rotate(-90)" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" paintOrder="stroke fill">SWITCH</text></svg></span>
           </button>
         </div>
-        {sheet && <ServiceSheet key={sheet.id} service={services.find(item => item.id === sheet.id)} number={services.findIndex(item => item.id === sheet.id) + 1} getOrigin={() => papers.current.get(sheet.id)} onClose={() => {
+        {sheet && <ServiceSheet key={sheet.id} service={services.find(item => item.id === sheet.id)} number={services.findIndex(item => item.id === sheet.id) + 1} getOrigin={() => { const paper = papers.current.get(sheet.id); return paper?.getClientRects().length ? paper : null; }} onClose={() => {
           setSheet(null); setOpen(true);
           requestAnimationFrame(() => sheet.trigger?.focus({ preventScroll: true }));
         }} />}

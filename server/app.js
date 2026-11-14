@@ -17,9 +17,9 @@ export function createApp({ env = process.env, deliver } = {}) {
   let transport;
   const send = deliver || (async data => {
     if ((env.MAIL_PROVIDER || 'resend') === 'resend') return sendViaResend(data, env);
-    if (env.MAIL_PROVIDER !== 'smtp' || !env.SMTP_HOST || !env.SMTP_USER || !env.SMTP_PASS || !env.CONTACT_TO || !env.MAIL_FROM) throw new Error('MAIL_NOT_CONFIGURED');
+    if (env.MAIL_PROVIDER !== 'smtp' || !env.SMTP_HOST || !env.SMTP_USER || !env.SMTP_PASS || !env.MAIL_FROM) throw new Error('MAIL_NOT_CONFIGURED');
     transport ||= nodemailer.createTransport({ host: env.SMTP_HOST, port: Number(env.SMTP_PORT || 587), secure: env.SMTP_SECURE === 'true', auth: { user: env.SMTP_USER, pass: env.SMTP_PASS }, connectionTimeout: 10000, socketTimeout: 12000 });
-    await transport.sendMail({ from: env.MAIL_FROM, to: env.CONTACT_TO, ...emailContent(data) });
+    await transport.sendMail({ from: env.MAIL_FROM, to: env.CONTACT_TO || 'bannerdrop1@gmail.com', ...emailContent(data) });
   });
   app.post('/api/contact', rateLimit({ windowMs: 15 * 60 * 1000, limit: 5, standardHeaders: 'draft-8', legacyHeaders: false, message: { message: 'Слишком много заявок. Попробуйте через 15 минут.' } }), async (req, res) => {
     const origin = req.get('origin');

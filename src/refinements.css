@@ -274,3 +274,12 @@
 .switch-menu:not([data-open]) .sm-prelayers {
   pointer-events: none;
 }
+
+.mobile-works { display: none; }
+@media (max-width: 700px) {
+  .works-section .carousel-wrap { display: none; }
+  .mobile-works { display: flex; gap: 12px; overflow-x: auto; padding: 24px var(--gutter) 8px; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+  .mobile-work { flex: 0 0 82%; padding: 0; border: 0; border-radius: 8px; overflow: hidden; background: #111; scroll-snap-align: center; }
+  .mobile-work img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .field input, .field textarea, .field select { font-size: 16px; }
+}

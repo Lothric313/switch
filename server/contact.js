@@ -23,11 +23,11 @@ export function emailContent(data) {
 
 // Resend works on Node and serverless runtimes. Credentials never enter the browser.
 export async function sendViaResend(data, env, fetcher = fetch) {
-  if (!env.RESEND_API_KEY || !env.CONTACT_TO || !env.MAIL_FROM) throw new Error('MAIL_NOT_CONFIGURED');
+  if (!env.RESEND_API_KEY || !env.MAIL_FROM) throw new Error('MAIL_NOT_CONFIGURED');
   const content = emailContent(data);
   const response = await fetcher('https://api.resend.com/emails', {
     method: 'POST', headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: env.MAIL_FROM, to: env.CONTACT_TO.split(',').map(value => value.trim()).filter(Boolean), ...content }),
+    body: JSON.stringify({ from: env.MAIL_FROM, to: (env.CONTACT_TO || 'bannerdrop1@gmail.com').split(',').map(value => value.trim()).filter(Boolean), ...content }),
     signal: AbortSignal.timeout(12000),
   });
   if (!response.ok) throw new Error('MAIL_DELIVERY_FAILED');

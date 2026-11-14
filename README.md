@@ -64,7 +64,7 @@ npm start
 ```dotenv
 MAIL_PROVIDER=resend
 RESEND_API_KEY=ваш_ключ
-CONTACT_TO=адрес_студии@example.com
+CONTACT_TO=bannerdrop1@gmail.com
 MAIL_FROM=SWITCH <hello@ваш-подтверждённый-домен>
 APP_ORIGIN=http://localhost:5173
 ```
@@ -77,7 +77,7 @@ APP_ORIGIN=http://localhost:5173
 
 ```dotenv
 MAIL_PROVIDER=smtp
-CONTACT_TO=адрес_студии@example.com
+CONTACT_TO=bannerdrop1@gmail.com
 MAIL_FROM=SWITCH <hello@ваш-домен>
 SMTP_HOST=smtp.провайдер.ru
 SMTP_PORT=587

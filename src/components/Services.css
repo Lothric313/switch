@@ -108,3 +108,10 @@
   .service-folder-cover, .service-folder-paper, .service-sheet-back { transition: none; }
   .service-title, .service-title::after { transition: none; }
 }
+
+@media (max-width: 700px) {
+  .folder-showcase.service-folder-showcase { position: static; display: contents; min-height: 0; }
+  .service-folder { display: none; }
+  .service-sheet-place { position: fixed; inset: 0; padding: 24px; background: #020406dc; overflow-y: auto; z-index: 90; }
+  .service-sheet-motion { margin: auto; }
+}
