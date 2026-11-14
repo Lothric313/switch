@@ -291,3 +291,9 @@
 @media (max-width: 700px) {
   .hero h1 { animation: none; }
 }
+
+.hero h1 { white-space: nowrap; }
+.hero h1 span { display: inline-block; }
+@media (max-width: 700px) {
+  .hero { --hero-word-size: min(60vw, 65svh); }
+}
