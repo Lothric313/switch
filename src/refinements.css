@@ -287,3 +287,7 @@
 @media (max-width: 700px) {
   .switch-menu .sm-panel-item { font-size: clamp(24px, 8vw, 42px); }
 }
+
+@media (max-width: 700px) {
+  .hero h1 { animation: none; }
+}

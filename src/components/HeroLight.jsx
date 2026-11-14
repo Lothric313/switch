@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import LightRays from './react-bits/LightRays/LightRays.jsx';
 
-export default function HeroLight() {
+function HeroLight() {
+  const [mobile, setMobile] = useState(() => window.matchMedia('(max-width: 700px)').matches);
   const [reducedMotion, setReducedMotion] = useState(() =>
     window.matchMedia('(prefers-reduced-motion: reduce)').matches
   );
@@ -11,6 +12,13 @@ export default function HeroLight() {
     const update = () => setReducedMotion(preference.matches);
     preference.addEventListener('change', update);
     return () => preference.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 700px)');
+    const update = event => setMobile(event.matches);
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
   }, []);
 
   return <div className="hero-light" aria-hidden="true">
@@ -27,12 +35,14 @@ export default function HeroLight() {
       atmosphere={0.45}
       intensity={1.15}
       fadeDistance={1.05}
-      followMouse={!reducedMotion}
+      followMouse={!reducedMotion && !mobile}
       mouseInfluence={0.08}
       cursorShadow={false}
       clickPulse={false}
       intro={!reducedMotion}
-      maxDevicePixelRatio={1.5}
+      maxDevicePixelRatio={mobile ? 0.5 : 0.75}
     />
   </div>;
 }
+
+export default memo(HeroLight);

@@ -1,10 +1,10 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { lazy, memo, Suspense, useEffect, useRef, useState } from 'react';
 import { works, localizeWork } from '../config/works.js';
 import { useLanguage } from './Language.jsx';
 import Reveal from './Reveal.jsx';
 const FlexCarousel = lazy(() => import('./react-bits/FlexCarousel/FlexCarousel.jsx'));
 
-export default function Works({ onSelect }) {
+function Works({ onSelect }) {
   const { language, t } = useLanguage();
   const items = works.map(work => { const localized = localizeWork(work, language); return { src: work.cover, title: localized.title, alt: localized.title }; });
   const section = useRef(null);
@@ -30,3 +30,5 @@ export default function Works({ onSelect }) {
     </div>
   </section>;
 }
+
+export default memo(Works);
