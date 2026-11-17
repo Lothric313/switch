@@ -1,17 +1,25 @@
 /* Sparse type-led layout. Font supplied by the studio: Inter 4.1. */
 @font-face { font-family: 'Schabo X Condensed'; src: url('/fonts/SCHABO-XCondensed.woff2') format('woff2'); font-style: normal; font-weight: 400; font-display: swap; }
 :root { font-weight: 550; }
-/* Light Rays falls from the top edge onto the wordmark in the middle row. */
+html { scrollbar-gutter: stable; }
+/* The hero glow is pre-rendered so scrolling and overlays don't compete with it. */
 .hero { height: 100vh; height: 100dvh; min-height: 0; max-height: none; display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); --hero-third: calc(100% / 3); --hero-word-size: min(72vw, 88.5dvh); }
 .hero-content { position: relative; inset: auto; grid-row: 2; min-width: 0; justify-content: center; gap: clamp(20px, 3.5dvh, 36px); padding: 0; z-index: 1; user-select: none; -webkit-user-select: none; cursor: default; }
-.hero h1 { font-family: 'Schabo X Condensed', Impact, sans-serif; font-size: var(--hero-word-size); font-weight: 400; letter-spacing: -.015em; font-kerning: normal; line-height: .8; text-box-trim: trim-both; text-box-edge: cap alphabetic; margin: 0; padding: 0; color: #e7f2ff; background: radial-gradient(ellipse at 50% 0%, #ffffff 0%, #e1eeff 35%, #a5b9d3 75%, #7b8fa9 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 -3px 45px #9bc8ff1f; animation: hero-glow-shimmer 7s ease-in-out infinite; }
-@keyframes hero-glow-shimmer {
-  0%, 100% { text-shadow: 0 -3px 35px rgba(155, 200, 255, 0.16), 0 0 65px rgba(95, 178, 255, 0.08); }
-  50% { text-shadow: 0 -3px 55px rgba(155, 200, 255, 0.32), 0 0 95px rgba(95, 178, 255, 0.18); }
-}
+.hero h1 { font-family: 'Schabo X Condensed', Impact, sans-serif; font-size: var(--hero-word-size); font-weight: 400; letter-spacing: -.015em; font-kerning: normal; line-height: .8; text-box-trim: trim-both; text-box-edge: cap alphabetic; margin: 0; padding: 0; color: #e7f2ff; background: radial-gradient(ellipse at 50% 0%, #ffffff 0%, #e1eeff 35%, #a5b9d3 75%, #7b8fa9 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .hero-studio-label { margin: 0; font-family: 'Inter', Arial, sans-serif; font-size: clamp(11px, 1.25vw, 18px); font-weight: 750; line-height: 1.4; letter-spacing: .16em; color: #cad5e5; transition: color .35s ease, letter-spacing .35s ease, text-shadow .35s ease; }
 .hero-studio-label:hover { color: #ffffff; letter-spacing: .185em; text-shadow: 0 0 16px rgba(155, 200, 255, 0.3); }
-.hero-light { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 0%, #345a8c18, transparent 65%); mask-image: linear-gradient(#000 0%, #000 55%, transparent 100%); }
+.hero-light {
+  --hero-rays: url('/hero-rays-desktop.webp');
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: linear-gradient(transparent 55%, var(--bg)), var(--hero-rays), radial-gradient(ellipse at 50% 40%, #345a8c3d, transparent 66%);
+  background-size: 100% 100%;
+}
+@media (max-width: 700px) {
+  .hero-light { --hero-rays: url('/hero-rays-mobile.webp'); }
+}
 .hero-tagline { font-weight: 600; font-size: clamp(19px, 1.8vw, 26px); line-height: 1.45; }
 .primary-button { font-weight: 700; margin-top: 30px; }
 .hero-bottom { justify-content: center; bottom: max(22px, env(safe-area-inset-bottom)); z-index: 3; }
@@ -246,7 +254,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .header-wordmark { transition: none; }
-  .hero h1,
   .scroll-cue > svg,
   .section-heading h2 .blue,
   .contact-intro h2 .blue,

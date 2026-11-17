@@ -1,6 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import Header from './components/Header.jsx';
-import HeroLight from './components/HeroLight.jsx';
 import Works from './components/Works.jsx';
 import Services from './components/Services.jsx';
 import Contact from './components/Contact.jsx';
@@ -46,7 +45,7 @@ export default function App() {
     <div inert={selection ? true : undefined}><Header onOpenChange={setMenuOpen} /></div>
     <main inert={blocked ? true : undefined}>
       <section id="home" className="hero">
-        <HeroLight />
+        <div className="hero-light" aria-hidden="true" />
         <div ref={heroContent} className="hero-content">
           <Reveal as="h1"><span>SWITCH</span></Reveal>
           <Reveal as="p" className="hero-studio-label" delay={120}>WEB DEVELOPMENT СТУДИЯ</Reveal>
