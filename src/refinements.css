@@ -297,3 +297,6 @@
 @media (max-width: 700px) {
   .hero { --hero-word-size: min(60vw, 65svh); }
 }
+
+/* Composite menu layers over the animated background. */
+.switch-menu .staggered-menu-panel, .switch-menu .sm-prelayer { will-change: transform; }

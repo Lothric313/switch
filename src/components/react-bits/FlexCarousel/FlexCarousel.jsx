@@ -393,8 +393,9 @@ const FlexCarousel = ({
       width: 2,
       height: 2,
       depth: false,
-      minFilter: gl.LINEAR_MIPMAP_LINEAR,
-      magFilter: gl.LINEAR
+      minFilter: gl.LINEAR,
+      magFilter: gl.LINEAR,
+      generateMipmaps: false
     });
 
     const lensUniforms = {
@@ -973,8 +974,6 @@ const FlexCarousel = ({
           gl.clear(gl.COLOR_BUFFER_BIT);
         }
         renderer.bindFramebuffer();
-        target.texture.bind();
-        gl.generateMipmap(gl.TEXTURE_2D);
 
         lensUniforms.uResolution.value = [width, height];
         lensUniforms.uDpr.value = dpr;
