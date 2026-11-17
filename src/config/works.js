@@ -3,6 +3,8 @@ export const works = [
   { id: 'aura', title: 'AURA ONE', category: 'Лендинг продукта', year: '2026', cover: '/works/aura-one-cover.jpg', video: '/works/project-01.mp4', description: 'Сайт о VR-гарнитуре: продукт, дизайн и характеристики.', link: 'https://lothric313.github.io/aura-one/', demo: false, en: { category: 'Product landing page', description: 'A VR headset website: product, design and specifications.' } },
   { id: 'lapusik', title: 'ЛАПУСИК', category: 'Зоосалон', year: '2026', cover: '/works/lapusik-cover.jpg', video: '/works/project-02.mp4', description: 'Сайт зоосалона с услугами, ценами и записью.', link: 'https://lothric313.github.io/lapusik/', demo: false, en: { title: 'LAPUSIK', category: 'Pet grooming', description: 'A pet grooming website with services, pricing and booking.' } },
   { id: 'lothric', title: 'LOTHRIC JEWELRY', category: 'Ювелирный магазин', year: '2026', cover: '/works/lothric-cover.jpg', video: '/works/lothric.mp4', description: 'Сайт ювелирного бренда с каталогом украшений.', link: 'https://lothric313.github.io/lothric-jewelry/', demo: false, en: { category: 'Jewelry store', description: 'A jewelry brand website with a collection catalog.' } },
+  { id: 'rr-detailing', title: 'RR Detaling', cover: '/works/rr-detailing.png', video: '/works/rr-detailing.mp4', link: 'https://lothric313.github.io/rr-detailing/' },
+  { id: 'chisto-konkretno', title: 'Чисто Конкретно', cover: '/works/chisto-konkretno.png', video: '/works/chisto-konkretno.mp4', link: 'https://switch3344.github.io/ChistoKonkretno' },
 ].map(work => ({
   ...work,
   cover: `${import.meta.env.BASE_URL}${work.cover.slice(1)}`,
