@@ -2,6 +2,9 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { localizeWork, works } from '../config/works.js';
 import { useLanguage } from './Language.jsx';
 
+const mobile = () => window.matchMedia('(max-width: 700px)').matches;
+const mobileHidden = { opacity: 0, transform: 'translateY(12px)' };
+
 export default function ServiceSheet({ service, number, getOrigin, onClose }) {
   const { language, t } = useLanguage();
   const paper = useRef(null);
@@ -63,6 +66,15 @@ export default function ServiceSheet({ service, number, getOrigin, onClose }) {
     const finish = () => { onClose(); if (afterClose) requestAnimationFrame(afterClose); };
     if (reduced()) { finish(); return; }
     const motionStyle = getComputedStyle(motion.current);
+    if (mobile()) {
+      const visible = { opacity: motionStyle.opacity, transform: motionStyle.transform };
+      animation.current?.cancel();
+      animation.current = motion.current.animate([visible, mobileHidden], {
+        duration: 160, easing: 'ease-in', fill: 'forwards',
+      });
+      animation.current.finished.then(finish).catch(() => {});
+      return;
+    }
     const current = { width: motionStyle.width, height: motionStyle.height, transform: motionStyle.transform };
     const angle = currentAngle();
     const fold = getComputedStyle(back.current).getPropertyValue('--fold-size');
@@ -84,7 +96,11 @@ export default function ServiceSheet({ service, number, getOrigin, onClose }) {
   };
 
   useLayoutEffect(() => {
-    if (!reduced()) {
+    if (!reduced() && mobile()) {
+      animation.current = motion.current.animate([mobileHidden, { opacity: 1, transform: 'none' }], {
+        duration: 220, easing: 'ease-out',
+      });
+    } else if (!reduced()) {
       const timing = { duration: 720, easing: 'cubic-bezier(.4,0,.2,1)' };
       const motionStyle = getComputedStyle(motion.current);
       const full = { width: motionStyle.width, height: motionStyle.height, transform: 'none' };
@@ -114,7 +130,9 @@ export default function ServiceSheet({ service, number, getOrigin, onClose }) {
     else resetFold();
   };
 
-  return <div className="service-sheet-place">
+  return <div className="service-sheet-place" onClick={event => {
+    if (event.target === event.currentTarget && mobile()) dismiss();
+  }}>
     <div ref={motion} className="service-sheet-motion">
     <article ref={paper} id="service-sheet" className="service-sheet" aria-labelledby="service-sheet-title" onKeyDown={event => {
       if (event.key === 'Escape') { event.preventDefault(); dismiss(); }
