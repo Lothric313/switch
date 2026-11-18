@@ -13,7 +13,7 @@ export default function Footer({ inert }) {
   ];
 
   return <footer className="studio-footer" aria-label="SWITCH" inert={inert}>
-    <div className="studio-footer-top">
+    <div className="studio-footer-top container">
       <nav className="studio-footer-nav" aria-label={t.footerNav}>
         {links.map(link => <a key={link.id} href={`#${link.id}`}>{link.label}</a>)}
       </nav>

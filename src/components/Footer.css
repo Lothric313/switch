@@ -4,7 +4,7 @@
   container-type: inline-size;
   overflow: hidden;
   margin: 0;
-  padding: clamp(28px, 3.5vw, 54px) clamp(24px, 2.7vw, 48px) clamp(20px, 2.4vw, 38px);
+  padding-block: var(--section-padding) 24px;
   border: 0;
   border-radius: 0;
   color: #f3f5f7;
@@ -57,9 +57,9 @@
 .studio-footer a:focus-visible { outline-offset: 3px; }
 
 .studio-footer-wordmark {
-  margin: clamp(40px, 4.5vw, 76px) 0 0;
+  margin: var(--section-padding) var(--gutter) 0;
   padding-right: .055em;
-  font-size: 25.8cqi;
+  font-size: calc((100cqi - 2 * var(--gutter)) * .258);
   line-height: .82;
   font-weight: 600;
   letter-spacing: -.065em;
@@ -83,5 +83,4 @@
   .studio-footer-socials a { width: 36px; height: 40px; }
   .studio-footer-socials svg { width: 20px; height: 20px; }
   .studio-footer-copyright, .studio-footer-back { font-size: 10px; }
-  .studio-footer-wordmark { margin-top: 48px; }
 }

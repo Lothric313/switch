@@ -8,7 +8,13 @@ export const copy = {
     menu: { button: 'Меню', buttonClose: 'Закрыть', open: 'Открыть меню', close: 'Закрыть меню', nav: 'Основная навигация', home: 'SWITCH — на главную', socials: 'Соцсети', language: 'Язык сайта' },
     carousel: { loading: 'Загрузка…', label: 'Проекты. Зажмите левую кнопку мыши и перетаскивайте. Клавиши влево и вправо — листать, Enter — открыть.', of: 'из' },
     folder: { label: 'Услуги', aria: 'Папка услуг. Открыть или закрыть', open: 'Открыть папку', collapse: 'Свернуть папку', close: 'Выберите лист', return: 'Потяните уголок вниз или нажмите, чтобы свернуть лист', group: 'Тип проекта', discuss: 'Обсудить проект' },
-    about: { title: 'О нас', score: '5,0', rating: 'Средняя оценка' },
+    about: {
+      title: 'О нас',
+      score: '5,0',
+      rating: 'Средняя оценка',
+      whyUs: 'Почему именно мы',
+      approach: 'Сначала разбираемся, зачем вам сайт и кто будет им пользоваться. Затем придумываем концепцию, подбираем цвета и шрифты под ваш бренд. В Figma собираем макет, чтобы вы могли увидеть будущий сайт и обсудить детали до разработки. По согласованному макету создаём сайт и проверяем его на телефоне и компьютере. За дизайн отвечаем сами и можем объяснить, какую задачу решает каждый элемент.',
+    },
     modal: { close: 'Закрыть проект', video: 'Видео проекта', unavailable: 'Видео недоступно', soon: 'Видео скоро', cover: 'Обложка проекта', link: 'Перейти на сайт' },
   },
   en: {
@@ -20,7 +26,13 @@ export const copy = {
     menu: { button: 'Menu', buttonClose: 'Close', open: 'Open menu', close: 'Close menu', nav: 'Main navigation', home: 'SWITCH — home', socials: 'Socials', language: 'Website language' },
     carousel: { loading: 'Loading…', label: 'Projects. Hold the left mouse button and drag. Arrow keys navigate; Enter opens a project.', of: 'of' },
     folder: { label: 'Services', aria: 'Services folder. Open or close', open: 'Open folder', collapse: 'Close folder', close: 'Choose a sheet', return: 'Pull the corner down or click to fold the sheet', group: 'Project type', discuss: 'Discuss your project' },
-    about: { title: 'About us', score: '5.0', rating: 'Average rating' },
+    about: {
+      title: 'About us',
+      score: '5.0',
+      rating: 'Average rating',
+      whyUs: 'Why choose us',
+      approach: 'We start by finding out what you need the site to do and who will use it. Then we develop a concept and choose colors and typefaces that fit your brand. We create a mockup in Figma so you can see the site and discuss the details before development. Once you approve the mockup, we build the site and test it on mobile and desktop. We take responsibility for the design and can explain what each element does.',
+    },
     modal: { close: 'Close project', video: 'Project video', unavailable: 'Video unavailable', soon: 'Video coming soon', cover: 'Project cover', link: 'Visit website' },
   },
 };
