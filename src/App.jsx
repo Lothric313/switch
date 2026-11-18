@@ -47,7 +47,7 @@ export default function App() {
         <div className="hero-light" aria-hidden="true" />
         <div ref={heroContent} className="hero-content">
           <Reveal as="h1"><span>SWITCH</span></Reveal>
-          <Reveal as="p" className="hero-studio-label" delay={120}>WEB DEVELOPMENT СТУДИЯ</Reveal>
+          <Reveal as="p" className="hero-studio-label" delay={120}>{t.hero.studioLabel}</Reveal>
         </div>
         <div className="hero-bottom"><a href="#works" className="scroll-cue" aria-label={t.hero.scroll}><Arrow direction="down" /></a></div>
       </section>
