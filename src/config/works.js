@@ -5,6 +5,7 @@ export const works = [
   { id: 'lothric', title: 'LOTHRIC JEWELRY', category: 'Ювелирный магазин', year: '2026', cover: '/works/lothric-cover.jpg', video: '/works/lothric.mp4', description: 'Сайт ювелирного бренда с каталогом украшений.', link: 'https://lothric313.github.io/lothric-jewelry/', demo: false, en: { category: 'Jewelry store', description: 'A jewelry brand website with a collection catalog.' } },
   { id: 'rr-detailing', title: 'RR Detaling', cover: '/works/rr-detailing.png', video: '/works/rr-detailing.mp4', link: 'https://lothric313.github.io/rr-detailing/' },
   { id: 'chisto-konkretno', title: 'Чисто Конкретно', cover: '/works/chisto-konkretno.png', video: '/works/chisto-konkretno.mp4', link: 'https://switch3344.github.io/ChistoKonkretno' },
+  { id: 'elbrus', title: 'ELBRUS', cover: '/works/elbrus-cover.webp', video: '/works/elbrus.mp4', link: 'https://lothric313.github.io/elbrus/' },
 ].map(work => ({
   ...work,
   cover: `${import.meta.env.BASE_URL}${work.cover.slice(1)}`,
