@@ -18,9 +18,9 @@ export default function Services({ selected, onSelect }) {
     setOpen(true);
     setSheet({ id: item.id, trigger: event.currentTarget });
   };
-  return <section id="services" className="services-section section-space container">
-    <div className="section-heading"><Reveal as="h2">{t.services}<span className="blue">.</span></Reveal></div>
-    <div className="services-layout">
+  return <section id="services" className="services-section section-space">
+    <div className="section-heading container"><Reveal as="h2">{t.services}<span className="blue">.</span></Reveal></div>
+    <div className="services-layout container">
       <div className="folder-showcase service-folder-showcase">
         <div className={`service-folder ${open ? 'is-open' : ''}`}>
           <div className="service-folder-back" aria-hidden="true" />

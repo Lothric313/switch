@@ -18,12 +18,12 @@ export default function App() {
     let active = true;
     const fit = () => {
       if (!active) return;
-      heading.style.removeProperty('font-size');
+      heading.style.removeProperty('--hero-fit');
       if (!window.matchMedia('(max-width: 700px)').matches) return;
       const available = Math.max(0, heroContent.current.clientWidth - 40);
       const width = word.getBoundingClientRect().width;
       if (width > available && available > 0) {
-        heading.style.fontSize = (parseFloat(getComputedStyle(heading).fontSize) * available / width) + 'px';
+        heading.style.setProperty('--hero-fit', (parseFloat(getComputedStyle(heading).fontSize) * available / width) + 'px');
       }
     };
     fit();

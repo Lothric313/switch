@@ -13,7 +13,7 @@ test('validation rejects invalid contact, unknown tariffs and honeypot spam', ()
 });
 test('price in the email comes from server config, ignoring forged client price', () => {
   const result = validateContact({ ...valid(), price: '1 ₽' });
-  assert.ok(emailContent(result.data).text.includes('от 2 500 до 5 000 ₽'));
+  assert.ok(emailContent(result.data).text.includes('до 5 тысяч рублей'));
   assert.equal(result.data.contact, '@switch_user');
 });
 test('Resend receives credentials only on the server and sends the expected email', async () => {

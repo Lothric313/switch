@@ -136,11 +136,6 @@ export default function ServiceSheet({ service, number, getOrigin, onClose }) {
         onClick={event => { if (dragged.current && event.detail !== 0) { dragged.current = false; return; } dismiss(); }}
         onPointerDown={event => {
           if (event.button !== 0 || closing.current) return;
-          animation.current?.cancel();
-          cancelAnimationFrame(faceFrame.current);
-          flip.current?.cancel();
-          rotation.current = { from: 180, to: 180 };
-          paper.current.classList.remove('shows-front');
           dragged.current = false;
           event.currentTarget.setPointerCapture(event.pointerId);
           drag.current = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, down: 0, distance: 0 };

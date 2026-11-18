@@ -38,10 +38,19 @@ export default function Contact({ selected, onSelect }) {
       for (const field of ['name', 'contact', 'comment', 'website']) form.current.elements[field].value = '';
     } catch { setStatus('error'); setProblem('network'); }
   };
-  return <section id="contact" className="contact-section section-space container">
-    <div className="contact-grid">
+  return <section id="contact" className="contact-section section-space" aria-labelledby="about-title">
+    <div className="contact-grid container">
       <div className="contact-intro">
-        <Reveal as="h2">{t.contactTitle}<span className="blue">↗</span></Reveal>
+        <Reveal as="h2" id="about-title">{t.about.first} <span className="blue">{t.about.accent}.</span></Reveal>
+        <Reveal className="about-rating" delay={80}>
+          <div className="about-stars" aria-hidden="true">
+            {[1, 2, 3, 4, 5].map(star => <svg key={star} viewBox="0 0 24 24" fill="currentColor">
+              <path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L7 14.2 2 9.3l6.9-1z" />
+            </svg>)}
+          </div>
+          <p className="about-score">{t.about.score}</p>
+          <p className="about-rating-label">{t.about.rating}</p>
+        </Reveal>
         <Reveal delay={120}>
           <div className="social-links">{socials.map(social => <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.label}>
             <SocialIcon id={social.id} /><span>{social.label}</span><Arrow />
