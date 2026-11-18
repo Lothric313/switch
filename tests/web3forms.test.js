@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { sendInquiry } from '../src/config/web3forms.js';
 
 const data = { name: ' Анна ', contact: '@anna_test', comment: 'Нужен сайт', website: '' };
-const service = { title: 'Лендинг', priceLabel: 'до 5 тысяч рублей' };
+const service = { title: 'Лендинг', priceLabel: 'до 5 000 рублей' };
 
 test('Web3Forms receives the inquiry and selected service', async () => {
   const result = await sendInquiry(data, service, async (url, options) => {
@@ -12,7 +12,7 @@ test('Web3Forms receives the inquiry and selected service', async () => {
     assert.equal(body['Имя'], 'Анна');
     assert.equal(body['Контакт'], '@anna_test');
     assert.equal(body['Тип проекта'], 'Лендинг');
-    assert.equal(body['Стоимость'], 'до 5 тысяч рублей');
+    assert.equal(body['Стоимость'], 'до 5 000 рублей');
     assert.equal(body.botcheck, false);
     return { ok: true, status: 200, json: async () => ({ success: true }) };
   });

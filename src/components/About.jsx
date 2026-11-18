@@ -8,7 +8,7 @@ export default function About() {
   return <section id="contact" className="about-section section-space" aria-labelledby="about-title">
     <div className="container">
       <div className="section-heading">
-        <Reveal as="h2" id="about-title">{t.about.title}.</Reveal>
+        <Reveal as="h2" id="about-title">{t.about.title}<span className="blue">.</span></Reveal>
       </div>
       <Reveal className="about-rating" delay={80}>
         <div className="about-score-group">

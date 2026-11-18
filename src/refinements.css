@@ -52,7 +52,8 @@ main > section {
   0% { text-shadow: 0 0 0 transparent; }
   100% { text-shadow: 0 0 12px rgba(90, 183, 255, 0.6); }
 }
-.section-heading:hover h2 .blue { transform: scale(1.3); color: #78caff; text-shadow: 0 0 18px rgba(95, 212, 255, 0.85); }
+.section-heading:hover h2 .blue { color: #78caff; text-shadow: 0 0 18px rgba(95, 212, 255, 0.85); }
+.works-section .section-heading:hover h2 .blue { transform: scale(1.3); }
 .hero, .works-section, .services-section, .about-section, .site-footer { background: var(--bg); border-top: 0; }
 .works-controls { display: flex; justify-content: center; margin-top: -25px; }
 .project-index { gap: 13px; font-size: 12px; font-weight: 650; }
@@ -63,6 +64,11 @@ main > section {
 .carousel-arrows button:active { transform: scale(0.94); }
 .switch-menu .sm-logo-img { width: 40px; height: 42px; }
 .switch-menu .sm-logo { gap: 14px; }
+.switch-menu.is-past-hero:not([data-open]) .staggered-menu-header {
+  background: linear-gradient(180deg, #050608db, #05060870);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
 .header-wordmark { font-size: clamp(25px, 2.1vw, 32px); font-weight: 800; letter-spacing: -.025em; line-height: 1; opacity: 0; transform: translateX(-8px); transition: opacity .35s ease, transform .35s ease; }
 .header-wordmark.is-visible { opacity: 1; transform: translateX(0); }
 .header-wordmark-dot { color: var(--blue); display: inline-block; margin-left: 1px; transition: transform .3s cubic-bezier(.34, 1.56, .64, 1), text-shadow .3s ease, color .3s ease; animation: blue-dot-pulse 4s ease-in-out infinite alternate; }
