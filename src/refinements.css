@@ -310,5 +310,20 @@ html { scrollbar-gutter: stable; }
 .hero h1 { white-space: nowrap; }
 .hero h1 span { display: inline-block; }
 
+@media (max-width: 700px) {
+  @supports (-webkit-touch-callout: none) {
+    /* Paint the glyphs directly on iOS so a WebKit repaint cannot crop the text mask. */
+    .hero h1 {
+      background: none;
+      -webkit-text-fill-color: currentColor;
+      text-box-trim: none;
+      line-height: 1;
+      /* SCHABO reserves 0.2em below the baseline of its capitals. */
+      margin-block-end: -.2em;
+    }
+    .hero h1 span { display: block; }
+  }
+}
+
 /* Composite menu layers over the animated background. */
 .switch-menu .staggered-menu-panel, .switch-menu .sm-prelayer { will-change: transform; }
