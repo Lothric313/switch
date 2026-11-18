@@ -6,15 +6,16 @@ import Reveal from './Reveal.jsx';
 import ServiceSheet from './ServiceSheet.jsx';
 import './Services.css';
 
-export default function Services({ selected, onSelect }) {
+export default function Services() {
   const { language, t } = useLanguage();
   const services = getServices(language);
+  const [selected, setSelected] = useState('landing');
   const [open, setOpen] = useState(true);
   const [sheet, setSheet] = useState(null);
   const papers = useRef(new Map());
   const toggleFolder = () => { setSheet(null); setOpen(value => !value); };
   const choose = (item, event) => {
-    onSelect(item.id);
+    setSelected(item.id);
     setOpen(true);
     setSheet({ id: item.id, trigger: event.currentTarget });
   };

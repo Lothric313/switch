@@ -1,5 +1,4 @@
 @property --fold-size { syntax: '<length>'; initial-value: 36px; inherits: true; }
-@font-face { font-family: 'Switch Soft'; font-style: normal; font-weight: 200 800; font-display: swap; src: url('/fonts/manrope-latin.woff2') format('woff2'); }
 
 .folder-showcase.service-folder-showcase { min-height: clamp(315px, 39vw, 570px); perspective: 1400px; overflow: visible; }
 .service-folder { --folder-blue: #2878df; --paper: #ecf1f8; position: relative; width: 48%; height: clamp(255px, 28vw, 390px); margin-left: 48%; perspective: 1400px; }
@@ -12,7 +11,7 @@
 .service-folder-cover-outside > span { font-size: 12px; font-weight: 550; letter-spacing: 0; }
 .service-folder-cover-inside { transform: rotateY(180deg); background: linear-gradient(90deg, #1e64b9, #2878df); }
 .service-folder-watermark { position: absolute; inset: 12px; width: calc(100% - 24px); height: calc(100% - 24px); color: #8ec3ff; opacity: .32; pointer-events: none; }
-.service-folder-watermark text { font-family: 'Switch Soft', Inter, sans-serif; letter-spacing: 0; }
+.service-folder-watermark text { letter-spacing: 0; }
 .service-folder.is-open .service-folder-cover { z-index: 0; transform: rotateY(-180deg); }
 .service-folder-papers { position: absolute; inset: 16px; z-index: 2; }
 .service-folder-paper { --paper-turn: 0deg; --paper-shift: 0px; position: absolute; inset: 0; z-index: calc(var(--paper-index) + 1); width: 100%; height: 100%; padding: 20px 17px; display: flex; align-items: flex-start; gap: 12px; text-align: left; background: var(--paper); color: #12253d; border: 1px solid #cad6e5; border-radius: 2px; box-shadow: 0 4px 10px #08172c30; clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 0 100%); transform: translateY(calc(var(--paper-index) * 2px)); transition: transform 700ms cubic-bezier(.22,.8,.2,1), top 700ms cubic-bezier(.22,.8,.2,1), height 700ms cubic-bezier(.22,.8,.2,1); }
