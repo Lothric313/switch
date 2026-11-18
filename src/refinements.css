@@ -1,4 +1,5 @@
 /* Sparse type-led layout. Font supplied by the studio: Inter 4.1. */
+@font-face { font-family: 'Schabo X Condensed'; src: url('/fonts/SCHABO-XCondensed.woff2') format('woff2'); font-style: normal; font-weight: 400; font-display: swap; }
 :root { font-weight: 550; }
 html { scrollbar-gutter: stable; }
 main > section {
@@ -13,9 +14,9 @@ main > section {
   padding-block: clamp(24px, 3vw, 50px);
 }
 /* The hero glow is pre-rendered so scrolling and overlays don't compete with it. */
-.hero { height: auto; min-height: 0; max-height: none; display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); --hero-third: calc(100% / 3); }
+.hero { height: auto; min-height: 0; max-height: none; display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); --hero-third: calc(100% / 3); --hero-word-size: min(62vw - 140px, 88.5dvh, 940px); }
 .hero-content { position: relative; inset: auto; grid-row: 2; min-width: 0; justify-content: center; gap: clamp(14px, 2vw, 32px); padding: 0; z-index: 1; user-select: none; -webkit-user-select: none; cursor: default; }
-.hero h1 { font-size: min(22vw, 48dvh, 370px); font-weight: 900; letter-spacing: -.075em; line-height: .9; white-space: nowrap; margin: 0; padding: 0; color: #e7f2ff; background: radial-gradient(ellipse at 50% 0%, #ffffff 0%, #e1eeff 35%, #a5b9d3 75%, #7b8fa9 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero h1 { font-family: 'Schabo X Condensed', Impact, sans-serif; font-size: min(var(--hero-word-size), var(--hero-fit, 100vw)); font-weight: 400; letter-spacing: -.015em; font-kerning: normal; line-height: .8; text-box-trim: trim-both; text-box-edge: cap alphabetic; margin: 0; padding: 0; color: #e7f2ff; background: radial-gradient(ellipse at 50% 0%, #ffffff 0%, #e1eeff 35%, #a5b9d3 75%, #7b8fa9 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .hero-studio-label { margin: 0; font-family: 'Inter', Arial, sans-serif; font-size: clamp(11px, 1.25vw, 18px); font-weight: 750; line-height: 1.4; letter-spacing: .16em; color: #cad5e5; transition: color .35s ease, letter-spacing .35s ease, text-shadow .35s ease; }
 .hero-studio-label:hover { color: #ffffff; letter-spacing: .185em; text-shadow: 0 0 16px rgba(155, 200, 255, 0.3); }
 .hero-light {
@@ -205,7 +206,7 @@ main > section {
 }
 @media(max-width:700px) {
   main { padding-top: 80px; }
-  .hero { grid-template-rows: minmax(0, 1fr) 36px; }
+  .hero { grid-template-rows: minmax(0, 1fr) 36px; --hero-word-size: min(42vw, 65svh); }
   .hero-content { grid-row: 1; gap: 10px; }
   .hero-bottom { bottom: 2px; }
   .scroll-cue { height: 36px; }
@@ -269,6 +270,9 @@ main > section {
 @media (max-width: 700px) {
   .hero h1 { animation: none; }
 }
+
+.hero h1 { white-space: nowrap; }
+.hero h1 span { display: inline-block; }
 
 /* Composite menu layers over the animated background. */
 .switch-menu .staggered-menu-panel, .switch-menu .sm-prelayer { will-change: transform; }
