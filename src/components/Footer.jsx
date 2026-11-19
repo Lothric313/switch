@@ -24,6 +24,7 @@ export default function Footer({ inert }) {
           </a>)}
         </div>
         <span className="studio-footer-copyright">© {new Date().getFullYear()} SWITCH</span>
+        <a className="studio-footer-privacy" href={`${import.meta.env.BASE_URL}privacy.html`} hrefLang="ru">{t.privacy}</a>
         <a className="studio-footer-back" href="#home">{t.backTop}<Arrow /></a>
       </div>
     </div>
