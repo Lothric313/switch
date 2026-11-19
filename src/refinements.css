@@ -149,10 +149,10 @@ html { scrollbar-gutter: stable; }
 .switch-menu .sm-socials { margin-top: auto; }
 .switch-menu .sm-socials-link { font-weight: 600; }
 .language-switch { display: flex; gap: 5px; padding-top: 26px; margin-top: 22px; border-top: 1px solid #ffffff1c; }
-.language-switch button { padding: 10px 16px; border-radius: 5px; background: transparent; color: #7f8a9d; font-size: 12px; font-weight: 750; transition: color .2s ease, background-color .2s ease, transform .2s ease; }
-.language-switch button[aria-pressed=true] { color: #eaf5ff; background: #3b9eff24; }
-.language-switch button:hover { color: #5fd4ff; transform: translateY(-1px); }
-.language-switch button:active { transform: translateY(0) scale(0.96); }
+.language-switch a { padding: 10px 16px; border-radius: 5px; background: transparent; color: #7f8a9d; font-size: 12px; font-weight: 750; transition: color .2s ease, background-color .2s ease, transform .2s ease; }
+.language-switch a[aria-current=page] { color: #eaf5ff; background: #3b9eff24; }
+.language-switch a:hover { color: #5fd4ff; transform: translateY(-1px); }
+.language-switch a:active { transform: translateY(0) scale(0.96); }
 
 /* Work modal dialog & Visit Website button positioned to the right */
 .work-modal .modal-close {

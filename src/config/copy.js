@@ -1,7 +1,7 @@
 export const copy = {
   ru: {
-    title: 'SWITCH — сайты, которые переключают внимание',
-    description: 'SWITCH — дизайн и разработка сайтов. Проекты, услуги и связь со студией.',
+    title: 'SWITCH — студия дизайна и разработки сайтов',
+    description: 'Студия SWITCH создаёт лендинги, многостраничные сайты и интернет-магазины. Посмотрите портфолио, узнайте стоимость разработки и обсудите свой проект.',
     home: 'Главная', works: 'Наши работы', services: 'Услуги', contact: 'Контакты',
     skip: 'Перейти к работам', backTop: 'Наверх', footerNav: 'Навигация в подвале', privacy: 'Политика конфиденциальности',
     hero: { studioLabel: 'СТУДИЯ ВЕБ-РАЗРАБОТКИ', first: 'Сайты, которые', second: 'переключают внимание.', cta: 'Смотреть работы', scroll: 'К работам' },
@@ -18,8 +18,8 @@ export const copy = {
     modal: { close: 'Закрыть проект', video: 'Видео проекта', unavailable: 'Видео недоступно', soon: 'Видео скоро', cover: 'Обложка проекта', link: 'Перейти на сайт' },
   },
   en: {
-    title: 'SWITCH — websites that turn heads',
-    description: 'SWITCH — website design and development. Selected work, services and contact.',
+    title: 'SWITCH — Web Design and Development Studio',
+    description: 'SWITCH designs and builds landing pages, business websites and online stores. Explore our portfolio, compare services and get in touch about your project.',
     home: 'Home', works: 'Selected work', services: 'Services', contact: 'Contact',
     skip: 'Skip to work', backTop: 'Back to top', footerNav: 'Footer navigation', privacy: 'Privacy policy (RU)',
     hero: { studioLabel: 'WEB DEVELOPMENT STUDIO', first: 'Websites that', second: 'turn heads.', cta: 'Explore work', scroll: 'View work' },

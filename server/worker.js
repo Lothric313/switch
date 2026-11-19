@@ -52,7 +52,11 @@ export default {
     }
     if (url.pathname.startsWith('/api/')) return json({ message: 'Адрес не найден.' }, 404);
     if (request.method !== 'GET' && request.method !== 'HEAD') return new Response('Method not allowed', { status: 405 });
-    const asset = assets[url.pathname === '/' ? '/index.html' : url.pathname];
+    if (url.pathname === '/ru' || url.pathname === '/en') {
+      url.pathname += '/';
+      return Response.redirect(url.href, 308);
+    }
+    const asset = assets[url.pathname.endsWith('/') ? url.pathname + 'index.html' : url.pathname];
     if (!asset) return new Response('Not found', { status: 404 });
     const bytes = Uint8Array.from(atob(asset.data), char => char.charCodeAt(0));
     const headers = {

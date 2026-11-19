@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import StaggeredMenu from './react-bits/StaggeredMenu/StaggeredMenu.jsx';
 import { socials } from '../config/socials.js';
 import { useLanguage } from './Language.jsx';
+import { rememberLanguage } from '../config/language.js';
 
 export default function Header({ onOpenChange }) {
-  const { t, language, setLanguage } = useLanguage();
+  const { t, language } = useLanguage();
   const [open, setOpen] = useState(false);
   const [pastHero, setPastHero] = useState(false);
   useEffect(() => {
@@ -23,7 +24,9 @@ export default function Header({ onOpenChange }) {
       logoAfter={<span className={`header-wordmark${pastHero ? ' is-visible' : ''}`} aria-hidden="true">SWITCH STUDIO<span className="header-wordmark-dot">.</span></span>}
       items={[{ label: t.home, link: '#home' }, { label: t.works, link: '#works' }, { label: t.services, link: '#services' }, { label: t.contact, link: '#contact' }]}
       labels={t.menu}
-      panelFooter={<div className="language-switch" role="group" aria-label={t.menu.language}>{['ru', 'en'].map(lang => <button key={lang} type="button" lang={lang} aria-pressed={language === lang} onClick={() => setLanguage(lang)}>{lang.toUpperCase()}</button>)}</div>}
+      panelFooter={<nav className="language-switch" aria-label={t.menu.language}>{['ru', 'en'].map(lang => <a key={lang}
+        href={`${import.meta.env.BASE_URL}${lang}/${location.search}${location.hash}`} lang={lang} hrefLang={lang}
+        aria-current={language === lang ? 'page' : undefined} onClick={() => rememberLanguage(lang)}>{lang.toUpperCase()}</a>)}</nav>}
       socialItems={socials.map(s => ({ label: s.label, link: s.url }))}
       onMenuOpen={() => change(true)} onMenuClose={() => change(false)} />
   </>;

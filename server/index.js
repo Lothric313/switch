@@ -12,8 +12,7 @@ if (isDev) {
   app.use(vite.middlewares);
 } else {
   const dist = fileURLToPath(new URL('../dist/client', import.meta.url));
-  app.use(express.static(dist, { index: false, maxAge: '1h' }));
-  app.get('/{*path}', (req, res) => res.sendFile(`${dist}/index.html`));
+  app.use(express.static(dist, { maxAge: '1h' }));
 }
 const port = Number(process.env.PORT || 5173);
 const server = app.listen(port, process.env.HOST || (isDev ? '127.0.0.1' : '0.0.0.0'), () => console.log(`SWITCH is ready: http://localhost:${port}`));
