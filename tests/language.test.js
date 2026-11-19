@@ -22,9 +22,14 @@ test('failed lookup, timeout and malformed responses fall back to English', asyn
 
 test('saved explicit choices override the previous automatic Russian default', t => {
   const values = new Map([['switch-language', 'ru']]);
-  t.mock.getter(globalThis, 'localStorage', () => ({
-    getItem: key => values.get(key), setItem: (key, value) => values.set(key, value),
-  }));
+  const previous = Object.getOwnPropertyDescriptor(globalThis, 'localStorage');
+  Object.defineProperty(globalThis, 'localStorage', {
+    configurable: true, value: { getItem: key => values.get(key), setItem: (key, value) => values.set(key, value) },
+  });
+  t.after(() => {
+    if (previous) Object.defineProperty(globalThis, 'localStorage', previous);
+    else delete globalThis.localStorage;
+  });
   assert.equal(savedLanguage(), undefined);
   values.set('switch-language', 'en');
   assert.equal(savedLanguage(), 'en');
