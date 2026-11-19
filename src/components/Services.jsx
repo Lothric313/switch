@@ -13,6 +13,8 @@ export default function Services() {
   const [open, setOpen] = useState(true);
   const [sheet, setSheet] = useState(null);
   const papers = useRef(new Map());
+  const selectedService = services.find(item => item.id === selected);
+  const contactUrl = `https://t.me/switchbuilder?text=${encodeURIComponent(t.folder.message(selectedService.title))}`;
   const toggleFolder = () => { setSheet(null); setOpen(value => !value); };
   const choose = (item, event) => {
     setSelected(item.id);
@@ -38,7 +40,7 @@ export default function Services() {
             <span className="service-folder-cover-inside" aria-hidden="true"><svg className="service-folder-watermark" viewBox="-2 -2 104 104" preserveAspectRatio="none" focusable="false"><text x="0" y="100" fontSize="137" fontWeight="700" textLength="100" lengthAdjust="spacingAndGlyphs" transform="translate(0 100) rotate(-90)" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" paintOrder="stroke fill">SWITCH</text></svg></span>
           </button>
         </div>
-        {sheet && <ServiceSheet key={sheet.id} service={services.find(item => item.id === sheet.id)} number={services.findIndex(item => item.id === sheet.id) + 1} getOrigin={() => { const paper = papers.current.get(sheet.id); return paper?.getClientRects().length ? paper : null; }} onClose={() => {
+        {sheet && <ServiceSheet key={sheet.id} service={selectedService} contactUrl={contactUrl} number={services.findIndex(item => item.id === sheet.id) + 1} getOrigin={() => { const paper = papers.current.get(sheet.id); return paper?.getClientRects().length ? paper : null; }} onClose={() => {
           setSheet(null); setOpen(true);
           requestAnimationFrame(() => sheet.trigger?.focus({ preventScroll: true }));
         }} />}
@@ -47,7 +49,7 @@ export default function Services() {
         {services.map(item => <button key={item.id} className={`service-row ${selected === item.id ? 'selected' : ''}`} aria-pressed={selected === item.id} aria-expanded={sheet?.id === item.id} aria-controls="service-sheet" onClick={event => choose(item, event)}>
           <span className="service-name"><span className="service-title">{item.title}</span><small>{item.priceLabel}</small></span>
         </button>)}
-        <a className="text-link" href="#contact">{t.folder.discuss} <Arrow /></a>
+        <a className="text-link" href={contactUrl} target="_blank" rel="noopener noreferrer">{t.folder.discuss} <Arrow /></a>
       </Reveal>
     </div>
   </section>;

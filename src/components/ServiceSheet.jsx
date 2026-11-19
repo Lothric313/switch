@@ -5,7 +5,7 @@ import { useLanguage } from './Language.jsx';
 const mobile = () => window.matchMedia('(max-width: 700px)').matches;
 const mobileHidden = { opacity: 0, transform: 'translateY(12px)' };
 
-export default function ServiceSheet({ service, number, getOrigin, onClose }) {
+export default function ServiceSheet({ service, contactUrl, number, getOrigin, onClose }) {
   const { language, t } = useLanguage();
   const paper = useRef(null);
   const motion = useRef(null);
@@ -59,11 +59,11 @@ export default function ServiceSheet({ service, number, getOrigin, onClose }) {
     };
   };
 
-  const dismiss = (afterClose = null) => {
+  const dismiss = () => {
     if (closing.current) return;
     closing.current = true;
     video.current?.pause();
-    const finish = () => { onClose(); if (afterClose) requestAnimationFrame(afterClose); };
+    const finish = () => onClose();
     if (reduced()) { finish(); return; }
     const motionStyle = getComputedStyle(motion.current);
     if (mobile()) {
@@ -145,10 +145,7 @@ export default function ServiceSheet({ service, number, getOrigin, onClose }) {
         {work && <div className="service-sheet-example" onContextMenu={event => event.preventDefault()}>
           {!failed ? <video ref={video} src={work.video} poster={work.cover} autoPlay muted loop playsInline disablePictureInPicture disableRemotePlayback controlsList="nodownload nofullscreen noremoteplayback" tabIndex={-1} preload="metadata" onError={() => setFailed(true)} aria-label={`${t.modal.video}: ${work.title}`} /> : <div className="service-sheet-poster"><img src={work.cover} alt={work.title} /><span>{t.modal.unavailable}</span></div>}
         </div>}
-        <a className="service-sheet-contact" href="#contact" onClick={event => {
-          event.preventDefault();
-          dismiss(() => document.getElementById('contact')?.scrollIntoView({ behavior: reduced() ? 'instant' : 'smooth' }));
-        }}>{t.folder.discuss}</a>
+        <a className="service-sheet-contact" href={contactUrl} target="_blank" rel="noopener noreferrer">{t.folder.discuss}</a>
       </div>
       <button ref={corner} className="service-sheet-corner" aria-label={t.folder.return} title={t.folder.return}
         onClick={event => { if (dragged.current && event.detail !== 0) { dragged.current = false; return; } dismiss(); }}

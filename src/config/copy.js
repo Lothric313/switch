@@ -7,7 +7,7 @@ export const copy = {
     hero: { studioLabel: 'WEB DEVELOPMENT СТУДИЯ', first: 'Сайты, которые', second: 'переключают внимание.', cta: 'Смотреть работы', scroll: 'К работам' },
     menu: { button: 'Меню', buttonClose: 'Закрыть', open: 'Открыть меню', close: 'Закрыть меню', nav: 'Основная навигация', home: 'SWITCH — на главную', socials: 'Соцсети', language: 'Язык сайта' },
     carousel: { loading: 'Загрузка…', label: 'Проекты. Зажмите левую кнопку мыши и перетаскивайте. Клавиши влево и вправо — листать, Enter — открыть.', of: 'из' },
-    folder: { label: 'Услуги', aria: 'Папка услуг. Открыть или закрыть', open: 'Открыть папку', collapse: 'Свернуть папку', close: 'Выберите лист', return: 'Потяните уголок вниз или нажмите, чтобы свернуть лист', group: 'Тип проекта', discuss: 'Обсудить проект' },
+    folder: { label: 'Услуги', aria: 'Папка услуг. Открыть или закрыть', open: 'Открыть папку', collapse: 'Свернуть папку', close: 'Выберите лист', return: 'Потяните уголок вниз или нажмите, чтобы свернуть лист', group: 'Тип проекта', discuss: 'Обсудить проект в Telegram', message: title => `Здравствуйте! Хочу обсудить проект «${title}».` },
     about: {
       title: 'О нас',
       score: '5,0',
@@ -25,7 +25,7 @@ export const copy = {
     hero: { studioLabel: 'WEB DEVELOPMENT STUDIO', first: 'Websites that', second: 'turn heads.', cta: 'Explore work', scroll: 'View work' },
     menu: { button: 'Menu', buttonClose: 'Close', open: 'Open menu', close: 'Close menu', nav: 'Main navigation', home: 'SWITCH — home', socials: 'Socials', language: 'Website language' },
     carousel: { loading: 'Loading…', label: 'Projects. Hold the left mouse button and drag. Arrow keys navigate; Enter opens a project.', of: 'of' },
-    folder: { label: 'Services', aria: 'Services folder. Open or close', open: 'Open folder', collapse: 'Close folder', close: 'Choose a sheet', return: 'Pull the corner down or click to fold the sheet', group: 'Project type', discuss: 'Discuss your project' },
+    folder: { label: 'Services', aria: 'Services folder. Open or close', open: 'Open folder', collapse: 'Close folder', close: 'Choose a sheet', return: 'Pull the corner down or click to fold the sheet', group: 'Project type', discuss: 'Discuss your project on Telegram', message: title => `Hi! I'd like to discuss a project: ${title}.` },
     about: {
       title: 'About us',
       score: '5.0',
