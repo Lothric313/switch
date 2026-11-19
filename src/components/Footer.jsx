@@ -12,7 +12,7 @@ export default function Footer({ inert }) {
     { id: 'contact', label: t.contact },
   ];
 
-  return <footer className="studio-footer" aria-label="SWITCH" inert={inert}>
+  return <footer className="studio-footer" aria-label="Switch Studio" inert={inert}>
     <div className="studio-footer-top container">
       <nav className="studio-footer-nav" aria-label={t.footerNav}>
         {links.map(link => <a key={link.id} href={`#${link.id}`}>{link.label}</a>)}
@@ -23,7 +23,7 @@ export default function Footer({ inert }) {
             <SocialIcon id={social.id} />
           </a>)}
         </div>
-        <span className="studio-footer-copyright">© {new Date().getFullYear()} SWITCH</span>
+        <span className="studio-footer-brand">© Switch Studio</span>
         <a className="studio-footer-privacy" href={`${import.meta.env.BASE_URL}privacy.html`} hrefLang="ru">{t.privacy}</a>
         <a className="studio-footer-back" href="#home">{t.backTop}<Arrow /></a>
       </div>

@@ -241,6 +241,7 @@ html { scrollbar-gutter: stable; }
 }
 @media(max-width:700px) {
   .switch-menu:not(.is-past-hero):not([data-open]) .staggered-menu-header { background: transparent; }
+  .header-wordmark { font-size: min(25px, 5vw); white-space: nowrap; }
   .hero { height: 100svh; aspect-ratio: auto; grid-template-rows: minmax(0, 1fr) 36px; --hero-word-size: min(58vw, 65svh); }
   .hero-content { grid-row: 1; gap: 12px; }
   .hero-studio-label { font-size: min(clamp(10px, 3vw, 18px), 4.2svh); }
