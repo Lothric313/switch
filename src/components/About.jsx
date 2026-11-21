@@ -1,4 +1,4 @@
-import { socials } from '../config/socials.js';
+import { contactSocials } from '../config/socials.js';
 import { Arrow, SocialIcon } from './Icons.jsx';
 import { useLanguage } from './Language.jsx';
 import Reveal from './Reveal.jsx';
@@ -23,7 +23,7 @@ export default function About() {
           <p>{t.about.rating}</p>
         </Reveal>
         <Reveal className="social-links" delay={120}>
-          {socials.map(social => <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer">
+          {contactSocials.map(social => <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer">
             <SocialIcon id={social.id} /><span>{social.label}</span><Arrow />
           </a>)}
         </Reveal>

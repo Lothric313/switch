@@ -1,6 +1,6 @@
 import { Arrow, SocialIcon } from './Icons.jsx';
 import { useLanguage } from './Language.jsx';
-import { socials } from '../config/socials.js';
+import { contactSocials } from '../config/socials.js';
 import './Footer.css';
 
 export default function Footer({ inert }) {
@@ -19,7 +19,7 @@ export default function Footer({ inert }) {
       </nav>
       <div className="studio-footer-details">
         <div className="studio-footer-socials">
-          {socials.map(social => <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.label} title={social.label}>
+          {contactSocials.map(social => <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.label} title={social.label}>
             <SocialIcon id={social.id} />
           </a>)}
         </div>
