@@ -5,6 +5,7 @@ import Services from './components/Services.jsx';
 import About from './components/About.jsx';
 import WorkModal from './components/WorkModal.jsx';
 import Footer from './components/Footer.jsx';
+import CookieNotice from './components/CookieNotice.jsx';
 import { Arrow } from './components/Icons.jsx';
 import { useLanguage } from './components/Language.jsx';
 import Reveal from './components/Reveal.jsx';
@@ -56,6 +57,7 @@ export default function App() {
       <About />
     </main>
     <Footer inert={blocked ? true : undefined} />
+    <CookieNotice hidden={blocked} />
     {selection && <WorkModal selection={selection} onClose={() => setSelection(null)} />}
   </>;
 }

@@ -3,6 +3,9 @@ import { useLanguage } from './Language.jsx';
 import { contactSocials } from '../config/socials.js';
 import './Footer.css';
 
+const operatorEmail = 'mail.t.shevcov@gmail.com';
+const operatorTelegram = contactSocials.find(social => social.id === 'telegram').url;
+
 export default function Footer({ inert }) {
   const { t } = useLanguage();
   const links = [
@@ -27,6 +30,11 @@ export default function Footer({ inert }) {
         <a className="studio-footer-privacy" href={`${import.meta.env.BASE_URL}privacy.html`} hrefLang="ru">{t.privacy}</a>
         <a className="studio-footer-back" href="#home">{t.backTop}<Arrow /></a>
       </div>
+      <address className="studio-footer-operator">
+        <div>{t.operator.name}</div>
+        <div>{t.operator.taxId} 010707555363</div>
+        <div><a href={`mailto:${operatorEmail}`}>{operatorEmail}</a> · <a href={operatorTelegram}>@switchbuilder</a></div>
+      </address>
     </div>
     <div className="studio-footer-wordmark" aria-hidden="true">SWITCH</div>
   </footer>;
