@@ -12,8 +12,8 @@
   border-right: 0;
   border-bottom: 0;
   border-radius: 20px 0 0 0;
-  background: #101924e6;
-  backdrop-filter: blur(12px);
+  background: transparent;
+  backdrop-filter: blur(8px);
   color: var(--blue);
   box-shadow: 0 4px 22px #0006;
   font-size: .8125rem;
