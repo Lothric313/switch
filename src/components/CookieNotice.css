@@ -12,8 +12,9 @@
   border-right: 0;
   border-bottom: 0;
   border-radius: 20px 0 0 0;
-  background: #101924;
-  color: #f3f5f7;
+  background: #101924e6;
+  backdrop-filter: blur(12px);
+  color: var(--blue);
   box-shadow: 0 4px 22px #0006;
   font-size: .8125rem;
   line-height: 1.35;
@@ -23,25 +24,39 @@
 .cookie-notice svg {
   width: 18px;
   height: 18px;
-  color: #9acfff;
 }
 
-.cookie-notice button {
-  flex: none;
+.cookie-button {
   min-height: 44px;
-  margin-left: 4px;
   padding-inline: 13px;
+  border: 1px solid currentColor;
   border-radius: 8px;
-  background: #a6d6ff;
-  color: #0a1421;
+  background: transparent;
+  backdrop-filter: blur(6px);
+  color: var(--blue);
+  font-size: .8125rem;
   font-weight: 600;
+  line-height: 1.35;
 }
 
-.cookie-notice button:hover { background: #c1e2ff; }
-.cookie-notice button:focus-visible { outline-offset: 3px; }
+.cookie-notice .cookie-button { flex: none; }
+.cookie-button:hover { background: #5ab7ff1c; }
+.cookie-button:focus-visible { outline-offset: 3px; }
 
 @keyframes cookie-notice-in {
   from { transform: translateY(100%); }
+}
+
+@media (max-width: 700px) {
+  .cookie-notice {
+    inset-inline: 0;
+    max-width: none;
+    padding-block: 4px calc(4px + env(safe-area-inset-bottom));
+    border-inline: 0;
+    border-radius: 0;
+  }
+
+  .cookie-notice span { flex: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

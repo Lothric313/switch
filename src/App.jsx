@@ -10,6 +10,8 @@ import { Arrow } from './components/Icons.jsx';
 import { useLanguage } from './components/Language.jsx';
 import Reveal from './components/Reveal.jsx';
 
+const acceptedCookie = 'switch-cookie-notice=accepted';
+
 export default function App() {
   const { t } = useLanguage();
   const heroContent = useRef(null);
@@ -39,7 +41,18 @@ export default function App() {
   }, []);
   const [selection, setSelection] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cookiesAccepted, setCookiesAccepted] = useState(() => {
+    return document.cookie.split(';').some(cookie => cookie.trim() === acceptedCookie);
+  });
   const blocked = menuOpen || !!selection;
+
+  function updateCookieChoice(accepted) {
+    const maxAge = accepted ? 31536000 : 0;
+    const secure = location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = `${acceptedCookie}; Max-Age=${maxAge}; Path=${import.meta.env.BASE_URL}; SameSite=Lax${secure}`;
+    setCookiesAccepted(accepted);
+  }
+
   return <>
     <a className="skip-link" href="#works">{t.skip}</a>
     <div inert={selection ? true : undefined}><Header onOpenChange={setMenuOpen} /></div>
@@ -56,8 +69,8 @@ export default function App() {
       <Services />
       <About />
     </main>
-    <Footer inert={blocked ? true : undefined} />
-    <CookieNotice hidden={blocked} />
+    <Footer inert={blocked ? true : undefined} onRevokeCookies={() => updateCookieChoice(false)} />
+    {!cookiesAccepted && !blocked && <CookieNotice onAccept={() => updateCookieChoice(true)} />}
     {selection && <WorkModal selection={selection} onClose={() => setSelection(null)} />}
   </>;
 }
