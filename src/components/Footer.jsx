@@ -28,7 +28,7 @@ export default function Footer({ inert, onRevokeCookies }) {
         </div>
         <span className="studio-footer-brand">© Switch Studio</span>
         <a className="studio-footer-privacy" href={`${import.meta.env.BASE_URL}privacy.html`} hrefLang="ru">{t.privacy}</a>
-        <button className="cookie-button" type="button" onClick={onRevokeCookies}>{t.cookie.revoke}</button>
+        <button className="studio-footer-revoke" type="button" onClick={onRevokeCookies}>{t.cookie.revoke}</button>
         <a className="studio-footer-back" href="#home">{t.backTop}<Arrow /></a>
       </div>
       <address className="studio-footer-operator">
